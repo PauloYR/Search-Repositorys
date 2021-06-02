@@ -24,6 +24,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all { variant ->
+        buildConfigField "String", "PRIVATE_TOKEN", PRIVATE_TOKEN
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -70,4 +73,5 @@ dependencies {
 
     implementation "org.koin:koin-android:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
 }
