@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#0277bd</color>
+    <color name="primaryLightColor">#58a5f0</color>
+    <color name="primaryDarkColor">#004c8c</color>
+    <color name="secondaryColor">#84ffff</color>
+    <color name="secondaryLightColor">#baffff</color>
+    <color name="secondaryDarkColor">#4bcbcc</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ffffff</color>
+    <color name="color_gitlab_tranparent">#4BFCA326</color>
+    <color name="color_gitlab">#FCA326</color>
+    <color name="color_gitlab_stroke">#FCA326</color>
+    <color name="color_github_tranparent">#8D051D4D</color>
+    <color name="color_github">#051D4D</color>
+    <color name="color_github_stroke">#051d4d</color>
+</resources>
