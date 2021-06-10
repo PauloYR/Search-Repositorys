@@ -9,7 +9,7 @@ sealed class Output<out Response> {
 }
 
 fun <R : Any> Response<R>.parseResponse(): Output<R> {
-    if (isSuccessful) {
+  if   (isSuccessful) {
         val body = body()
 
         if (body != null) {
