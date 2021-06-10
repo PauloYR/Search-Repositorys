@@ -6,14 +6,18 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-class SearchRepositoryApp: Application() {
+class SearchRepositoryApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin{
+        startKoin {
             androidContext(this@SearchRepositoryApp)
             androidLogger(Level.NONE)
-            modules(searchServiceModule)
+            modules(
+                serviceModule,
+                repositoryModule,
+                viewModelModule
+            )
         }
     }
 }

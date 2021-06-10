@@ -11,15 +11,20 @@ import com.pauloyr.searchrepository.presenter.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val searchServiceModule = module {
+val serviceModule = module {
 
     single { Service().buildApi(GitLab::class.java, get(), "https://gitlab.com/api/v4/") }
 
     single { Service().buildApi(GitHub::class.java, get(), "https://api.github.com") }
+}
 
-    single<GitLabRepository>{ GitLabRepositoryImpl(get()) }
+val repositoryModule = module {
+    single<GitLabRepository> { GitLabRepositoryImpl(get()) }
 
     single<GitHubRepository> { GitHubRepositoryImpl(get()) }
 
-    viewModel { MainViewModel(gitHubRepository =  get(), gitLabRepository =  get()) }
+}
+
+val viewModelModule = module {
+    viewModel { MainViewModel(get(), get()) }
 }
