@@ -43,13 +43,13 @@ class MainViewModel(
         val repositoriesGitLab = gitLabRepository.getRepositorys(search, page)
         val repositoriesGitHub = gitHubRepository.getRepositorys(search, page)
 
-        val list: MutableList<Repository> = ArrayList()
+        val listRepositories: MutableList<Repository> = ArrayList()
         _repositories.value?.let {
-            list.addAll(it)
+            listRepositories.addAll(it)
         }
-        list.addAll(repositoriesGitLab)
-        list.addAll(repositoriesGitHub)
-        return list.toList()
+        listRepositories.addAll(repositoriesGitLab)
+        listRepositories.addAll(repositoriesGitHub)
+        return listRepositories.toList()
     }
 
 }
