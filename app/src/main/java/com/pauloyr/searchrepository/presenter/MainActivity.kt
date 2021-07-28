@@ -2,6 +2,7 @@ package com.pauloyr.searchrepository.presenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.pauloyr.searchrepository.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -13,6 +14,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        searchRepositoryViewModel.getRepository("Android",1)
+        searchRepositoryViewModel.setSearch("Android")
+        searchRepositoryViewModel.setPage(1)
+        searchRepositoryViewModel.getRepositories()
+        searchRepositoryViewModel.repositories.observe(this,{ repositors->
+            repositors?.let {
+                Log.i("OPA","ALO")
+            }
+        })
     }
 }

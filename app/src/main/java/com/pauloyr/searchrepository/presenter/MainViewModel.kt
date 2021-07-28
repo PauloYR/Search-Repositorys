@@ -15,21 +15,41 @@ class MainViewModel(
     private val gitLabRepository: GitLabRepository,
     private val gitHubRepository: GitHubRepository
 ) : ViewModel() {
-    private val _repository = MutableLiveData<List<Repository>>()
-    val repository = _repository as LiveData<List<Repository>>
+    private val _repositories = MutableLiveData<List<Repository>>()
+    val repositories = _repositories as LiveData<List<Repository>>
 
-    fun getRepository(search: String, page: Int) {
+    private var search: String = ""
+
+    private var page: Int = 0
+
+    fun setSearch(search: String) {
+        this.search = search
+    }
+
+    fun setPage(page: Int) {
+        this.page = page
+    }
+
+    fun getRepositories() {
         viewModelScope.launch {
-            val listGitLab = gitLabRepository.getRepositorys(search, page)
-            val listGibHub = gitHubRepository.getRepositorys(search, page)
-
-            val list: MutableList<Repository> = ArrayList()
-            list.addAll(listGitLab)
-            list.addAll(listGibHub)
-
+            val list = mountListRepositories()
             withContext(Dispatchers.Main) {
-                _repository.value = list.toList()
+                _repositories.value = list
             }
         }
     }
+
+    private suspend fun mountListRepositories(): List<Repository> {
+        val repositoriesGitLab = gitLabRepository.getRepositorys(search, page)
+        val repositoriesGitHub = gitHubRepository.getRepositorys(search, page)
+
+        val list: MutableList<Repository> = ArrayList()
+        _repositories.value?.let {
+            list.addAll(it)
+        }
+        list.addAll(repositoriesGitLab)
+        list.addAll(repositoriesGitHub)
+        return list.toList()
+    }
+
 }

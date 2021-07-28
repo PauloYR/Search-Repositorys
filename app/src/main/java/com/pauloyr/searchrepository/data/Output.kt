@@ -1,4 +1,4 @@
-package com.pauloyr.searchrepository.data
+    package com.pauloyr.searchrepository.data
 
 import retrofit2.Response
 import java.net.HttpURLConnection
